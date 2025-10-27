@@ -6,7 +6,7 @@ import time #時間関連処理用モジュールの読込
 import numpy as np #行列処理用モジュールの読込
 import math as mt #各種計算用モジュールの読込
 import glob #ファイルパス一括取得用モジュールの読込
-from PySide2 import QtCore, QtGui, QtWidgets #GUI関連処理用モジュールの読込
+from PySide6 import QtCore, QtGui, QtWidgets #GUI関連処理用モジュールの読込
 from MIIL_PARAMETER_CREATER_GUI import Ui_MainWindow #QT Designerで作成し変換したファイルの読込
 
 #####グローバル変数########################################
@@ -72,7 +72,7 @@ class MainWindow1(QtWidgets.QMainWindow): #QtWidgets.QMainWindowを継承
             msgbox = QtWidgets.QMessageBox(self) #####メッセージボックスを準備
             msgbox.setWindowTitle("MPC")
             msgbox.setText("File loded.") #####メッセージボックスのテキストを設定
-            ret = msgbox.exec_() #####メッセージボックスを表示
+            ret = msgbox.exec() #####メッセージボックスを表示
             #####
     #####
 
@@ -96,7 +96,7 @@ class MainWindow1(QtWidgets.QMainWindow): #QtWidgets.QMainWindowを継承
             msgbox = QtWidgets.QMessageBox(self) #####メッセージボックスを準備
             msgbox.setWindowTitle("MPC")
             msgbox.setText("File saved.") #####メッセージボックスのテキストを設定
-            ret = msgbox.exec_() #####メッセージボックスを表示
+            ret = msgbox.exec() #####メッセージボックスを表示
             #####
     #####
 
@@ -129,7 +129,7 @@ class MainWindow1(QtWidgets.QMainWindow): #QtWidgets.QMainWindowを継承
                 msgbox = QtWidgets.QMessageBox(self) #####メッセージボックスを準備
                 msgbox.setWindowTitle("MPC")
                 msgbox.setText("No label found in the file.") #####メッセージボックスのテキストを設定
-                ret = msgbox.exec_() #####メッセージボックスを表示
+                ret = msgbox.exec() #####メッセージボックスを表示
 
     #-----pushButton10用イベント処理----------------------------------------
     ##########
@@ -158,22 +158,22 @@ class MainWindow1(QtWidgets.QMainWindow): #QtWidgets.QMainWindowを継承
             msgbox = QtWidgets.QMessageBox(self)
             msgbox.setWindowTitle("MPC")
             msgbox.setText("Please set dataset folder.")
-            ret = msgbox.exec_()
+            ret = msgbox.exec()
         elif self.ui.lineEdit5.text() == '':
             msgbox = QtWidgets.QMessageBox(self)
             msgbox.setWindowTitle("MPC")
             msgbox.setText("Please set label file.")
-            ret = msgbox.exec_()
+            ret = msgbox.exec()
         elif LabelNum <= 0:
             msgbox = QtWidgets.QMessageBox(self) #####メッセージボックスを準備
             msgbox.setWindowTitle("MPC")
             msgbox.setText("No label found in the file.") #####メッセージボックスのテキストを設定
-            ret = msgbox.exec_()
+            ret = msgbox.exec()
         elif self.ui.lineEdit8.text() == '':
             msgbox = QtWidgets.QMessageBox(self)
             msgbox.setWindowTitle("MPC")
             msgbox.setText("Please set the weights folder.")
-            ret = msgbox.exec_()
+            ret = msgbox.exec()
         else:
             filepath, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Save File", "",'parameter File (*.prm)') #パラメータファイルを選択
             if filepath: #ファイルパスが選択されているか確認
@@ -260,7 +260,7 @@ class MainWindow1(QtWidgets.QMainWindow): #QtWidgets.QMainWindowを継承
                     msgbox = QtWidgets.QMessageBox(self)
                     msgbox.setWindowTitle("MPC")
                     msgbox.setText("File saved.") #メッセージボックスのテキストを設定
-                    ret = msgbox.exec_() #メッセージボックスを表示
+                    ret = msgbox.exec() #メッセージボックスを表示
                     self.ui.pushButton2.setEnabled(True)
                     self.ui.pushButton3.setEnabled(True)
                     self.ui.pushButton5.setEnabled(True)
@@ -280,7 +280,7 @@ class MainWindow1(QtWidgets.QMainWindow): #QtWidgets.QMainWindowを継承
                     msgbox = QtWidgets.QMessageBox(self)
                     msgbox.setWindowTitle("MPC")
                     msgbox.setText("Canceled.") #メッセージボックスのテキストを設定
-                    ret = msgbox.exec_() #メッセージボックスを表示
+                    ret = msgbox.exec() #メッセージボックスを表示
     #-----pushButton14用イベント処理----------------------------------------
     ##########
     #パラメータファイルを表示
@@ -352,4 +352,4 @@ if __name__ == '__main__': #C言語のmain()に相当。このファイルが実
     app = QtWidgets.QApplication(sys.argv) #アプリケーションオブジェクト作成（sys.argvはコマンドライン引数のリスト）
     win = MainWindow1() #MainWindow1クラスのインスタンスを作成
     win.show() #ウィンドウを表示　win.showFullScreen()やwin.showEvent()を指定する事でウィンドウの状態を変える事が出来る
-    sys.exit(app.exec_()) #引数が関数の場合は、関数が終了するまで待ち、その関数の返値を上位プロセスに返す
+    sys.exit(app.exec()) #引数が関数の場合は、関数が終了するまで待ち、その関数の返値を上位プロセスに返す
